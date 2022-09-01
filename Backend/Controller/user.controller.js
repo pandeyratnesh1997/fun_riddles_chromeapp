@@ -5,12 +5,12 @@ const express = require("express");
 const userRoute = express.Router();
 
 userRoute.post("/signup", async (req, res) => {
-    const { email, password, age } = req.body;
+    const { email, password, name, role } = req.body;
      let exist = await userModel.findOne({email});
 
      console.log(email,exist)
      if(exist){
-      return res.send("Email alrady exist")
+      return res.status(409).send("Email alrady exist")
      }
     await bcrypt.hash(password, 8, (err, hash) => {
       if (err) {
@@ -19,7 +19,8 @@ userRoute.post("/signup", async (req, res) => {
       const user = new userModel({
         email,
         password: hash,
-        age,
+        name,
+        role
       });
   
       user.save();
@@ -42,7 +43,7 @@ userRoute.post("/signup", async (req, res) => {
       }
       if (result) {
         const token = jwt.sign(
-          { email: user.email, age: user.age, _id: user._id },
+          { email: user.email, name: user.name, _id: user._id },
           "very_secret",
           { expiresIn: "1h" }
         );

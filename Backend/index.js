@@ -1,5 +1,6 @@
 const express = require("express");
 const connection = require("./Config/database_config")
+const cors = require('cors')
 require("dotenv").config();
 const cors = require('cors');
 
@@ -7,7 +8,10 @@ const cors = require('cors');
 
 
 const app = express();
+
 app.use(cors());
+
+
 app.use(express.json());
 //route Controller
 const riddleRoute = require("./Controller/riddle.controller");
