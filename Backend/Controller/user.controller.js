@@ -1,4 +1,4 @@
-const userModel = require("../modals/user.modal");
+const userModel = require("../Models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const express = require("express");
