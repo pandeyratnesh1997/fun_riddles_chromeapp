@@ -24,8 +24,8 @@ import { useEffect } from "react";
 const SignUpAsPlayer = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [age, setAge] = useState("");
-  const role = "Admin";
+  const [name, setName] = useState("");
+  const role = "player";
   const [show, setShow] = React.useState(false);
 
   const toast = useToast();
@@ -38,67 +38,54 @@ const SignUpAsPlayer = () => {
     const payload = {
       email,
       password,
-      age,
+      name,
       role
     };
 
     dispatch(register(payload)).then((res) => {
       console.log(res);
-    //   if(res.status===404){
-    //     toast({
-    //       position: "top",
-    //       title: "This Email does not really exist!",
-    //       description:
-    //         "You have entered an email which does not exists. Please enter a valid email address!",
-    //       status: "warning",
-    //       duration: 5000,
-    //       isClosable: true,
-    //       zIndex: 10000,
-    //     });
-    //     return;
-    //   } 
-    //   if (res.status === 409) {
-    //     toast({
-    //       position: "top",
-    //       title: "Email has already been registered!",
-    //       description: "This email has already been registered, please login",
-    //       status: "error",
-    //       duration: 5000,
-    //       isClosable: true,
-    //       zIndex: 10000,
-    //     });
-    //     setTimeout(() => {
-    //       navigate("/login", { replace: true });
-    //     }, 5000);
-    //     return;
-    //   }
-    //   if (res.status === 200) {
-    //     toast({
-    //       position: "top",
-    //       title: "Account created.",
-    //       description:
-    //         "You have registered successfully for the Timecamp. You are now being redirected to login",
-    //       status: "success",
-    //       duration: 5000,
-    //       isClosable: true,
-    //       zIndex: 10000,
-    //     });
-    //     setTimeout(() => {
-    //       navigate("/login", { replace: true });
-    //     }, 5000);
-    //     return;
-    //   } 
-    //   else if(res.status === 500){
-    //     toast({
-    //       position: "top",
-    //       title: "OOPS!",
-    //       description:
-    //         " Something went wrong while registering. Please try again!",
-    //       status: "error",
-    //       duration: 5000,
-    //       isClosable: true,
-    //     });
-    //   }
+      if (res.status === 200) {
+        toast({
+          position: "top",
+          title: "Account created.",
+          description:
+            "You have registered successfully for the Timecamp. You are now being redirected to login",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          zIndex: 10000,
+        });
+        setTimeout(() => {
+          navigate("/login", { replace: true });
+        }, 5000);
+        return;
+      } 
+      if (res.response.status === 409) {
+        toast({
+          position: "top",
+          title: "Email has already been registered!",
+          description: "This email has already been registered, please login",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          zIndex: 10000,
+        });
+        setTimeout(() => {
+          navigate("/login", { replace: true });
+        }, 5000);
+        return;
+      }
+      else if(res.status === 500){
+        toast({
+          position: "top",
+          title: "OOPS!",
+          description:
+            " Something went wrong while registering. Please try again!",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     });
   };
 
@@ -124,6 +111,13 @@ const SignUpAsPlayer = () => {
         </Link>
         <Text className={styles.or_text}>Or</Text>
         <form onSubmit={handleRegister}>
+        <Input
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+            className={styles.sign_in_input}
+            size={["sm", "md", "md"]}
+            w={["90%", "80%", "80%"]}
+          />
           <Input
             type="email"
             placeholder="Email"
@@ -149,13 +143,7 @@ const SignUpAsPlayer = () => {
               </Button>
             </InputRightElement>
           </InputGroup>
-          <Input
-            placeholder="Age"
-            onChange={(e) => setAge(e.target.value)}
-            className={styles.sign_in_input}
-            size={["sm", "md", "md"]}
-            w={["90%", "80%", "80%"]}
-          />
+         
           <Button
             className={styles.sign_up_btn}
             display="flex"
