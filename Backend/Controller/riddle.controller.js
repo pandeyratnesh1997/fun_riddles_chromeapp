@@ -1,5 +1,5 @@
-const authenticate = require("../middlewares/athentication");
-const autherization = require("../middlewares/autherization");
+const authenticate = require("../Middleware/authentication");
+const autherization = require("../Middleware/autherization");
 const express = require("express");
 const riddleModel = require("../Models/riddle.model")
 
