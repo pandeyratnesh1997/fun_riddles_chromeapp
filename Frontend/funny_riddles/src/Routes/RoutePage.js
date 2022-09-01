@@ -1,17 +1,21 @@
 // routes
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import AdminPage from "../Components/AdminPage";
 import TopNav from "../Components/TopNav";
 import Login from "../Pages/Login";
+import Riddles from "../Pages/Riddles";
 import Signup from "../Pages/Signup";
 
 const RoutePage = () => {
   return (
     <>
-      <TopNav />
+     
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
+        <Route path="/admin" element={<AdminPage/>}/>
+        <Route path="/riddles" element={<Riddles/>}/>
       </Routes>
     </>
   );
