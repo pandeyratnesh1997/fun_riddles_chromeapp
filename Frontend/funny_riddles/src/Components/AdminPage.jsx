@@ -1,9 +1,10 @@
 // admin frontend
 import React from 'react'
 import { useState } from 'react'
-import { Box, Button, FormControl, FormLabel, Input, Stack, Textarea, useToast } from '@chakra-ui/react'
+import { Box, Button, FormControl, FormLabel, Heading, Input, Stack, Textarea, useToast } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { addRiddles } from '../Redux/Admin/action';
+import styles from "./Styles/Admin.module.css"
 
 const AdminPage = () => {
   const [newRiddle,setnewRiddle] = useState({
@@ -48,8 +49,10 @@ const handleSubmit = (e)=>{
 }
 
   return (
-    
-    <Box>
+    <>
+    <Heading >Admin page</Heading>
+    <Box className={styles.cont}>
+    <Heading size={'lg'}>Add new Riddles</Heading>
       <Stack >
         <FormControl isRequired>
             <FormLabel>Riddle</FormLabel>
@@ -65,10 +68,13 @@ const handleSubmit = (e)=>{
             <Input placeholder='enter creator name'  name='creator' value={newRiddle.creator} onChange={handleChange}/>    
             </FormControl>
             <Box>
-              <Button onClick={handleSubmit}>Save</Button>
+              <br/>
+              <Button colorScheme={'green'} onClick={handleSubmit}>Save</Button>
             </Box>
         </Stack>
     </Box>
+
+    </>
   )
 }
 

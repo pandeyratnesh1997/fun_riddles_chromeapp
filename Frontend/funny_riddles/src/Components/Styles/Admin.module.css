@@ -1,0 +1,35 @@
+.cont{
+   margin-top: 100px;
+    margin-left : 25%;
+    /* border  : 1px solid red; */
+
+    width: 50%;
+    height : 400px;
+    padding : 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+@media only screen and (max-width: 768px) {
+    .cont{
+        margin-top: 10px;
+         margin-left : 25%;
+         /* border  : 1px solid red; */
+     
+         width: 50%;
+         height : 400px;
+         padding : 20px;
+         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+     }
+  }
+
+  @media (max-width: 480px) {
+    .cont{
+        margin-top: 0px;
+         margin-left : 25%;
+         /* border  : 1px solid red; */
+     
+         width: 50%;
+         height : 400px;
+         padding : 20px;
+         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+     }
+  }
