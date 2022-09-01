@@ -4,8 +4,8 @@ import thunk from 'redux-thunk'
 import {reducer as adminReducer} from './Admin/reducer';
 
 const rootReducer = combineReducers({adminReducer})
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-
-const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
+const store = legacy_createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default store
