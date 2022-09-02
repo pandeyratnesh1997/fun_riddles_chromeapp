@@ -10,12 +10,11 @@ import Signup from "../Pages/Signup";
 const RoutePage = () => {
   return (
     <>
-     
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Signup />} />
-        <Route path="/admin" element={<AdminPage/>}/>
-        <Route path="/riddles" element={<Riddles/>}/>
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/signup" element={<Signup />} />
+        <Route path="/riddle/create" element={<AdminPage />} />
+        <Route path="/riddles" element={<Riddles />} />
       </Routes>
     </>
   );

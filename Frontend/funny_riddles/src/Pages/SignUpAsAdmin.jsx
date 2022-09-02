@@ -93,7 +93,7 @@ const SignUpAsAdmin = () => {
   const handleClick = () => setShow(!show);
 
   useEffect(() => {
-    document.title = 'Timecamp || Register';
+    document.title = 'riddleapp || Register';
   });
 
   return (

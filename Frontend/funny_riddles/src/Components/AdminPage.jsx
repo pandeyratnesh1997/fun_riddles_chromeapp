@@ -23,6 +23,8 @@ const handleChange = (e)=>{
 
 const handleSubmit = (e)=>{
   e.preventDefault();
+  dispatch(addRiddles(newRiddle))
+  /*
   dispatch(addRiddles(newRiddle)).then((r)=> {
       if(r.type==="ADD_RIDDLE_SUCCESS"){
         toast({
@@ -44,6 +46,7 @@ const handleSubmit = (e)=>{
       }
     }
   )
+  */
 
 
 }
