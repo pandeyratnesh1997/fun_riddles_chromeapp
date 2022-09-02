@@ -38,14 +38,7 @@ const Login = () => {
     e.preventDefault();
     const OTP = Math.floor(1000+Math.random()*1000)
     console.log('OTP:', OTP)
-//     <HStack>
-//   <PinInput>
-//     <PinInputField />
-//     <PinInputField />
-//     <PinInputField />
-//     <PinInputField />
-//   </PinInput>
-// </HStack>
+
     if(!email || !password){
         toast({
           position: "top",
@@ -64,7 +57,7 @@ const Login = () => {
       password,
     };
     dispatch(login(payload)).then(res => {
-      // console.log(res)
+      console.log(res)
       if(res.status  == 200){
         toast({
           position: "top",
@@ -78,6 +71,7 @@ const Login = () => {
         });
 
         localStorage.setItem("riddleapptoken", res.data.token);
+        localStorage.setItem("savedInfo", JSON.stringify(res.data.user));
         setTimeout(() => {
           navigate("/", { replace: true });
         }, 5000);
@@ -102,7 +96,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    document.title = "Timecamp || Login";
+    document.title = "Let's Riddle || Login";
   });
   return (
     <Box className={styles.mid_div}>

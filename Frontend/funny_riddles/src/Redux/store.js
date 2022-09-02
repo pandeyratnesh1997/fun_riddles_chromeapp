@@ -7,13 +7,28 @@ import {
 import thunk from "redux-thunk";
 import { reducer as adminReducer } from "./Admin/reducer";
 import { reducer as authReducer } from "./AuthReducer/reducer.js";
+import storage from "redux-persist/lib/storage";
+import persistReducer from "redux-persist/es/persistReducer";
+import persistStore from "redux-persist/es/persistStore";
 
-const rootReducer = combineReducers({ authReducer, adminReducer });
+const persistConfig = {
+  key: "main-root",
+  storage,
+};
+
+const rootReducer = combineReducers({
+  authReducer,
+  adminReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = legacy_createStore(
-  rootReducer,
+export const store = legacy_createStore(
+  persistedReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
 
-export default store;
+export const Persistor = persistStore(store);
