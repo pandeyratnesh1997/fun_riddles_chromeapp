@@ -44,7 +44,7 @@ userRoute.post("/signup", async (req, res) => {
       }
       if (result) {
         const token = jwt.sign(
-          { email: user.email, name: user.name, _id: user._id },
+          { email: user.email, name: user.name, _id: user._id, role: user.role },
           process.env.secretKey,
           { expiresIn: "1h" }
         );
