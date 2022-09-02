@@ -16,13 +16,18 @@ export const reducer = (state = init_state, action)=>{
         case types.GET_RIDDLE_REQUEST :{
             return {
                 ...state,
-                isLoading : true
+                isLoading : true,
+                isError : false,
+                
             }
         }
         case types.GET_RIDDLE_SUCCESS :{
+            
+            
             return {
                 ...state,
                 isLoading : false,
+                isError : false,
                 score : state.score += 1,
                 playerRiddle : payload
             }

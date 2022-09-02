@@ -16,9 +16,7 @@ useEffect(()=>{
     dispatch(getData())
 },[])
 
-  useEffect(() => {
-    dispatch(getData());
-  }, []);
+
 
   return (
     <>
