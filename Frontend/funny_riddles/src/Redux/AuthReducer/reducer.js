@@ -50,7 +50,7 @@ export const reducer = (state = InitialState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: false,
-        isAuth:true
+        isAuth: true,
       };
     }
     case LOGIN_FAILURE: {
@@ -60,8 +60,8 @@ export const reducer = (state = InitialState, { type, payload }) => {
         isError: true,
       };
     }
-    default:{
-        return state;
+    default: {
+      return state;
     }
   }
 };

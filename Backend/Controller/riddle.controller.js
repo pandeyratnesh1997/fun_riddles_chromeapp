@@ -22,6 +22,7 @@ riddleRoute.get("/", authenticate, async (req, res) => {
 
 riddleRoute.post("/create", authenticate,autherization(["admin"]), async (req, res) => {
   res.setHeader("Content-Type", "application/json");
+  console.log(req)
   const { riddle, answer, creator } = req.body;
   const item = new riddleModel({ riddle, answer, creator, creatorId: req.body.email });
 
