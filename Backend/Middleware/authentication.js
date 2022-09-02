@@ -9,8 +9,9 @@ const authenticate = (req, res, next) => {
       if (err) {
         return res.send("Please login again");
       }
+      console.log(decode)
+      req.body.email= decode.email;
       
-      req.body.email= decode.email
       next();
     });
   };

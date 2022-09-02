@@ -53,7 +53,7 @@ const Login = () => {
           isClosable: true,
           zIndex: 10000,
         });
-        localStorage.setItem("riddleapp", res.data.token);
+        localStorage.setItem("riddleapptoken", res.data.token);
         setTimeout(() => {
           navigate("/", { replace: true });
         }, 5000);

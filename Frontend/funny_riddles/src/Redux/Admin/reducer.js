@@ -6,7 +6,7 @@ const init_state = {
       riddle: "",
       answer: "",
       creator: "",
-      creatorId: 1,
+   
     },
   ],
   isAddRequest: false,
@@ -22,7 +22,7 @@ export const reducer = (state = init_state, action) => {
       };
     }
     case types.ADD_RIDDLE_SUCCESS: {
-      const { riddle, answer, creator, creatorId } = action.payload;
+      const { riddle, answer, creator} = action.payload;
       return {
         ...state,
         riddles: [
@@ -31,7 +31,7 @@ export const reducer = (state = init_state, action) => {
             riddle: riddle,
             answer: answer,
             creator: creator,
-            creatorId: creatorId,
+          
           },
         ],
         isAddRequest: false,

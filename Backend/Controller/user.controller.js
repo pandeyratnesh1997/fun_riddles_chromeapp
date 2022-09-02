@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const userRoute = express.Router();
+require('dotenv').config();
 
 userRoute.post("/signup", async (req, res) => {
     const { email, password, name, role } = req.body;
@@ -44,7 +45,7 @@ userRoute.post("/signup", async (req, res) => {
       if (result) {
         const token = jwt.sign(
           { email: user.email, name: user.name, _id: user._id },
-          "very_secret",
+          process.env.secretKey,
           { expiresIn: "1h" }
         );
         return res.send({massage:"loginSuccessfull",token:token,id:user._id})
