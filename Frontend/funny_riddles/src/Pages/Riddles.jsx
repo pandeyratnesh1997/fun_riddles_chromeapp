@@ -1,9 +1,16 @@
-import { Box, HStack, VStack } from '@chakra-ui/react'
-import React from 'react';
+import { Box, HStack } from '@chakra-ui/react'
+import React, { useEffect } from 'react';
 import styles from './Styles/Riddles.module.css'
-
+import { useDispatch } from 'react-redux';
+import { fetchRiddle } from '../Redux/Player/action';
 
 const Riddles = () => {
+const dispatch = useDispatch();
+
+useEffect(()=>{
+    dispatch(fetchRiddle())
+},[])
+
   return (
     <Box className={styles.cont}>
         <Box className={styles.topDiv}>
@@ -25,3 +32,6 @@ const Riddles = () => {
 }
 
 export default Riddles
+
+
+// Apple Chancery, cursive
