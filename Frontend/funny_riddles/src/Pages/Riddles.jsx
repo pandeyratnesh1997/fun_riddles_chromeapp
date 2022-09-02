@@ -10,24 +10,45 @@ const Riddles = () => {
   const riddle = useSelector((state) => state.playerReducer);
   console.log(riddle);
   const ref1 = useRef(null);
-//   const ref2 = useRef(null);
-//   const ref3 = useRef(null);
-//   const ref4 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
   const [result, setResult] = useState("");
-  const [ans,setans] = useState("");
+//   const [ans,setans] = useState("");
   
 
   const dispatch = useDispatch();
-
+/*
+  const CheckResult = (userAns)=>{
+    console.log(userAns)
+    if(userAns.trim()===riddle.playerRiddle[0].answer.trim()){
+        setResult("Right")
+    }
+    else{
+        setResult("Wrong")
+    }
+    console.log(result);
+    setTimeout(()=>{
+        setpage(page+1)
+    },3000)
+   
+  }
+const changePage = ()=>{
+    
+}
+*/
+  
   useEffect(() => {
     dispatch(fetchRiddle(page));
   }, [page]);
-  const CheckResult = () => {
+
+ 
+  const CheckResult = (id) => {
     // checking logic
-const value =ReactDOM.findDOMNode(this)
+// const value =ReactDOM.findDOMNode(this)
     // write and wrong
     let userValue;
-   console.log(value);
+//    console.log(value);
     switch (id) {
       case 1: {
         userValue = ref1.current.innerText;
@@ -84,6 +105,7 @@ console.log(result);
     },3000)
     
   };
+ 
   if (riddle.isLoading) {
     return <Spinner />
   } 
@@ -102,15 +124,15 @@ console.log(result);
             <Box className={styles.bottomDiv}>
               <HStack>
                 <Flex
-                  onClick={ this.CheckResult}
-                  ref={ref1}
+                  onClick={()=>CheckResult(1)}
+                ref={ref1}
                   className={styles.firstOption}
                 >
                   {el.options[0]}
                 </Flex>
                 <Box
-                  onClick={() => CheckResult(2)}
-                  ref={ref1}
+                  onClick={()=>CheckResult(2)}
+                  ref={ref2}
                   className={styles.secondOption}
                 >
                   {el.options[1]}
@@ -118,15 +140,15 @@ console.log(result);
               </HStack>
               <HStack>
                 <Box
-                  onClick={() => CheckResult(3)}
-                  ref={ref1}
+                  onClick={()=>CheckResult(3)}
+                  ref={ref3}
                   className={styles.thirdOption}
                 >
                   {el.options[2]}
                 </Box>
                 <Box
-                  onClick={() => CheckResult(4)}
-                  ref={ref1}
+                  onClick={()=>CheckResult(4)}
+                  ref={ref4}
                   className={styles.fourthOption}
                 >
                   {el.options[3]}
