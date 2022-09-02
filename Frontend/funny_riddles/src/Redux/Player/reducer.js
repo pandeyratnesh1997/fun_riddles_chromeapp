@@ -3,14 +3,15 @@ import * as types from './actionType';
 const init_state = {
     isLoading : false,
     isError : false,
-    playerRiddle : []
+    playerRiddle : [],
+    score : 0
 
 }
 
 
 export const reducer = (state = init_state, action)=>{
     const { type, payload} = action;
-
+// helo
     switch(type){
         case types.GET_RIDDLE_REQUEST :{
             return {
@@ -22,6 +23,7 @@ export const reducer = (state = init_state, action)=>{
             return {
                 ...state,
                 isLoading : false,
+                score : state.score += 1,
                 playerRiddle : payload
             }
         }

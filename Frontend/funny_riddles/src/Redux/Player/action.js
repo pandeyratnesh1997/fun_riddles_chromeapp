@@ -12,7 +12,7 @@ export const fetchRiddle =(payload)=>(dispatch) =>{
           authorization: `Bearer ${localStorage.getItem("riddleapptoken")}`,
         },
         params : {
-            riddle : payload
+            page : payload
         }
     }).then((r)=> dispatch({type: types.GET_RIDDLE_SUCCESS, payload : r.data}))
     .catch((e)=>dispatch({type : types.GET_RIDDLE_FALIURE}))
