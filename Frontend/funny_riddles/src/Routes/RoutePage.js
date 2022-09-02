@@ -10,6 +10,7 @@ import Signup from "../Pages/Signup";
 const RoutePage = () => {
   return (
     <>
+    <TopNav/>
       <Routes>
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/signup" element={<Signup />} />

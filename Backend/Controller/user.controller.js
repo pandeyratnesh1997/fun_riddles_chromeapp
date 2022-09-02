@@ -48,7 +48,12 @@ userRoute.post("/signup", async (req, res) => {
           process.env.secretKey,
           { expiresIn: "1h" }
         );
-        return res.send({massage:"loginSuccessfull",token:token,id:user._id})
+
+        const infoToSave = {
+          email: user.email,
+          name: user.name,
+        }
+        return res.send({massage:"loginSuccessfull",token:token,id:user._id,user:infoToSave})
       }else{
         return res.send("invalid credential");
       }

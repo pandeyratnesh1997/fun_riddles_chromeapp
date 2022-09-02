@@ -10,7 +10,7 @@
   left: 0;
   right: 0;
   background: #fff;
- 
+  z-index: 10;
 }
 
 .flexer{
@@ -47,7 +47,7 @@
   font-size: 20px;
   text-transform: uppercase;
   font-weight: 500;
-  
+  cursor: pointer;
 }
 
 
@@ -58,6 +58,118 @@
 }
 
 .login_container button{
-    width: 150px;
     border-radius: 20px;
+}
+
+.hamburger_container{
+  display: none;
+}
+
+@media only screen and (max-width:780px) and (min-width:481px){
+  .mid_container{
+    display: none;
+  }
+
+  .TopNav_container {
+    height: 5rem;
+  }
+
+  .imageContainer {
+    height: 90%;
+    margin: 5px ;
+    width: 20%;
+  }
+
+  .hamburger_container{
+    display: block;
+  }
+
+  .hamburger_container svg{
+      font-size: 26px;
+      color: rgb(227, 3, 93);
+  }
+
+  .hamburger_container button{
+    width: 100%;
+  }
+
+  .flexer{
+    width: 100%;
+    margin-left: 20px;
+    justify-content: flex-start;
+  }
+  
+  .profile_contianer{
+    width:20%;
+    position: absolute;
+    right: 0px;
+  }
+
+  .login_container{
+    max-width: 300px;
+    position: absolute;
+    right: 40px
+  }
+  .login_container button{
+    border-radius: 20px;
+    margin: 10px;
+    padding: 4px 10px;
+}
+}
+
+
+@media only screen and (max-width:480px) and (min-width:280px){
+  
+  .imageContainer{
+    display: none;
+  }
+  .mid_container{
+    display: none;
+  }
+
+  .TopNav_container {
+    height: 5rem;
+  }
+
+  .imageContainer {
+    height: 90%;
+    margin: 5px ;
+    width: 20%;
+  }
+
+  .hamburger_container{
+    display: block;
+  }
+
+  .hamburger_container svg{
+      font-size: 26px;
+      color: rgb(227, 3, 93);
+  }
+
+  .hamburger_container button{
+    width: 100%;
+  }
+
+  .flexer{
+    width: 100%;
+    margin-left: 20px;
+    justify-content: flex-start;
+  }
+  
+  .profile_contianer{
+    width:20%;
+    position: absolute;
+    right: 0px;
+  }
+
+  .login_container{
+    max-width: 300px;
+    position: absolute;
+    right: 60px
+  }
+  .login_container button{
+    border-radius: 20px;
+    margin: 10px;
+    padding: 4px 10px;
+}
 }
