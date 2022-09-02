@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux';
 
-import { getData } from '../Redux/Admin/action';
+import { getData } from "../Redux/Admin/action";
 
 const GetRiddles = () => {
    const riddles = useSelector((state)=>state.adminReducer.data);
@@ -16,6 +16,9 @@ useEffect(()=>{
     dispatch(getData())
 },[])
 
+  useEffect(() => {
+    dispatch(getData());
+  }, []);
 
   return (
     <>
@@ -55,4 +58,4 @@ useEffect(()=>{
   )
 }
 
-export default GetRiddles
+export default GetRiddles;
