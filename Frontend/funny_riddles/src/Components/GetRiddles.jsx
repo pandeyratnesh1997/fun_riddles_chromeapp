@@ -1,12 +1,21 @@
 import { Box, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import {EditIcon, DeleteIcon} from '@chakra-ui/icons'
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+
+import { getData } from '../Redux/Admin/action';
 
 const GetRiddles = () => {
-   const riddles = useSelector((state)=>state.adminReducer.riddles);
-const navigate = useNavigate()
+   const riddles = useSelector((state)=>state.adminReducer.data);
+   console.log(riddles)
+const navigate = useNavigate();
+const dispatch =  useDispatch();
+
+useEffect(()=>{
+   
+    dispatch(getData())
+},[])
 
 
   return (

@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const riddleSchema = new mongoose.Schema({
     riddle:{type:String,required:true},
     answer:{type:String,required:true},
+    options : {type : [String], required : true},
+    level : {type : String, required : true},
     creator:{type:String,required:true},
     creatorId:{type:String,required:true}
 })

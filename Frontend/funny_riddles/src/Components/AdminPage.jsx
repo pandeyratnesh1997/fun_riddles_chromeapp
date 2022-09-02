@@ -10,7 +10,9 @@ const AdminPage = () => {
   const [newRiddle,setnewRiddle] = useState({
     riddle : "",
     answer : "",
-    creator : ""
+    creator : "",
+    options : [],
+    level : "",
     
   });
   const dispatch = useDispatch();
@@ -18,13 +20,18 @@ const AdminPage = () => {
 
 const handleChange = (e)=>{
   const {name, value} = e.target;
-  setnewRiddle({...newRiddle, [name] : value})
+  if(name!=="options"){
+    setnewRiddle({...newRiddle, [name] : value})
+  }else if(name==="options"){
+    setnewRiddle({...newRiddle, [name] : value.split(",")})
+  }
+  
 }
 
 const handleSubmit = (e)=>{
   e.preventDefault();
-  dispatch(addRiddles(newRiddle))
-  /*
+  // dispatch(addRiddles(newRiddle))
+  
   dispatch(addRiddles(newRiddle)).then((r)=> {
       if(r.type==="ADD_RIDDLE_SUCCESS"){
         toast({
@@ -46,7 +53,7 @@ const handleSubmit = (e)=>{
       }
     }
   )
-  */
+  
 
 
 }
@@ -63,8 +70,17 @@ const handleSubmit = (e)=>{
             
         </FormControl>
         <FormControl isRequired>
+          <FormLabel>Options</FormLabel>
+              <Input placeholder='write 4 comma seperated options'  name='options' value={newRiddle.options} onChange={handleChange}/>    
+        </FormControl>
+
+        <FormControl isRequired>
           <FormLabel>Answer</FormLabel>
               <Input placeholder='enter Answer'  name='answer' value={newRiddle.answer} onChange={handleChange}/>    
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel>Level</FormLabel>
+              <Input placeholder="write anyone among 'hard' 'medium', 'easy' " name='level' value={newRiddle.level} onChange={handleChange}/>    
         </FormControl>
             <FormControl>
             <FormLabel>Creator</FormLabel>

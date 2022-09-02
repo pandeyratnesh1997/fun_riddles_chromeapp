@@ -5,13 +5,25 @@ const riddleModel = require("../Models/riddle.model")
 
 const riddleRoute = express.Router();
 
-riddleRoute.get("/", authenticate, async (req, res) => {
+riddleRoute.get("/admin", authenticate,autherization(["admin"]), async (req, res) => {
+  // const riddle = req.query.riddle;
+  // const name = new RegExp(riddle, "i");
+  try {
+    const item = await riddleModel.find();
+
+    res.send(item);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+riddleRoute.get("/", authenticate , async (req, res) => {
   const riddle = req.query.riddle;
   const name = new RegExp(riddle, "i");
   try {
     const item = await riddleModel
       .find({
-        $or: [{ riddle: name, creatorId: req.body.email }, { _id: req.query.id,creatorId: req.body.email }],
+        $or: [{ riddle: name, creatorId: req.body.email }, { _id: req.query.id,creatorId: req.body.email }, {level : req.query.level}],
       }).limit(+req.query.limit);
 
     res.send(item);
@@ -23,8 +35,8 @@ riddleRoute.get("/", authenticate, async (req, res) => {
 riddleRoute.post("/create", authenticate,autherization(["admin"]), async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   console.log(req)
-  const { riddle, answer, creator } = req.body;
-  const item = new riddleModel({ riddle, answer, creator, creatorId: req.body.email });
+  const { riddle, answer, creator, options, level } = req.body;
+  const item = new riddleModel({ riddle, answer, creator, options, level, creatorId: req.body.email });
 
   try {
     await item.save();
