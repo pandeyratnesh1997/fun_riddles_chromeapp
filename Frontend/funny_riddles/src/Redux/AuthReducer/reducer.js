@@ -2,6 +2,7 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
   SIGNUP_FAILURE,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
@@ -59,6 +60,12 @@ export const reducer = (state = InitialState, { type, payload }) => {
         isLoading: false,
         isError: true,
       };
+    }
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        isAuth: false,
+      }
     }
     default: {
       return state;

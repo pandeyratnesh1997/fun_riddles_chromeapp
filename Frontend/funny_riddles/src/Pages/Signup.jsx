@@ -5,19 +5,19 @@ import SignUpAsPlayer from "./SignUpAsPlayer";
 
 const Signup = () => {
   return (
-    <Tabs margin={"8rem auto"} width="45%">
+    <Tabs margin={"8rem auto"} width={["95%","85%","45%"]}>
       <TabList>
         <Tab
           w="50%"
           _selected={{ color: "white", bg: "green.500" }}
-          fontSize="18px"
+          fontSize={["14px","16px","18px"]}
         >
           Sign up as Player
         </Tab>
         <Tab
           w="50%"
           _selected={{ color: "white", bg: "green.500" }}
-          fontSize="18px"
+          fontSize={["14px","16px","18px"]}
         >
           Sign up as Admin
         </Tab>
