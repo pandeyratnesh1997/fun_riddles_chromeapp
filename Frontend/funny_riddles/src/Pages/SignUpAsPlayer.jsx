@@ -56,7 +56,7 @@ const SignUpAsPlayer = () => {
           zIndex: 10000,
         });
         setTimeout(() => {
-          navigate("/login", { replace: true });
+          navigate("/user/login", { replace: true });
         }, 5000);
         return;
       } 
