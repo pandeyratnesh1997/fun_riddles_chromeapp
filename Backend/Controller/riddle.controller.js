@@ -25,6 +25,7 @@ riddleRoute.get("/", authenticate , async (req, res) => {
       .find({
         $or: [{ riddle: name, creatorId: req.body.email }, { _id: req.query.id,creatorId: req.body.email }, {level : req.query.level}],
       }).limit(+req.query.limit);
+      console.log("player", item)
 
     res.send(item);
   } catch (err) {
