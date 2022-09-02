@@ -1,35 +1,34 @@
 import * as types from "./actionTypes";
-import axios from 'axios';
+import axios from "axios";
 
-
-
-export const addRiddles = (payload) => async(dispatch) => {
+export const addRiddles = (payload) => async (dispatch) => {
   dispatch({ type: types.ADD_RIDDLE_REQUEST });
-console.log("payload",payload)
-//   try {
-//     let res = await axios.post("http://localhost:8080/riddle/create", {payload}, {
-//       headers: {
-//         "content-type": "application-json",
-//         authorization: `${localStorage.getItem("riddleapp")}`,
-//       },
+  console.log("payload", payload);
+  //   try {
+  //     let res = await axios.post("http://localhost:8080/riddle/create", {payload}, {
+  //       headers: {
+  //         "content-type": "application-json",
+  //         authorization: `${localStorage.getItem("riddleapp")}`,
+  //       },
 
-//     })
-//     let data = await res.data;
-//     dispatch({ type: types.ADD_RIDDLE_SUCCESS, payload: data })
-//   } catch (error) {
-//     dispatch({ type: types.ADD_RIDDLE_FALIURE })
-//   }
-// }
-    return axios({
-      method : "post",
-      url : "/riddle/create",
-      baseURL : "http://localhost:8080",
-      headers : {
-        authorization : `Bearer ${localStorage.getItem("riddleapptoken")}`
-      },
-      data: payload
-    }).then((r)=> dispatch({type : types.ADD_RIDDLE_SUCCESS, payload: r.data}))
-    .catch((e)=> dispatch({type : types.ADD_RIDDLE_FALIURE}))
+  //     })
+  //     let data = await res.data;
+  //     dispatch({ type: types.ADD_RIDDLE_SUCCESS, payload: data })
+  //   } catch (error) {
+  //     dispatch({ type: types.ADD_RIDDLE_FALIURE })
+  //   }
+  // }
+  return axios({
+    method: "post",
+    url: "/riddle/create",
+    baseURL: "http://localhost:8080",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("riddleapptoken")}`,
+    },
+    data: payload,
+  })
+    .then((r) => dispatch({ type: types.ADD_RIDDLE_SUCCESS, payload: r.data }))
+    .catch((e) => dispatch({ type: types.ADD_RIDDLE_FALIURE }));
 };
 
 export const deleteRiddle = (payload) => (dispatch) => {
@@ -37,13 +36,30 @@ export const deleteRiddle = (payload) => (dispatch) => {
   const id = payload;
 
   return axios({
-    method : "delete",
-    url : `/riddle/delete/${id}`,
-    baseURL : "http://localhost:8080",
-    headers : {
-      authorization : `Bearer ${localStorage.getItem("riddleapptoken")}`
+    method: "delete",
+    url: `/riddle/delete/${id}`,
+    baseURL: "http://localhost:8080",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("riddleapptoken")}`,
     },
-    
-  }).then((r)=> dispatch({type : types.DELETE_RIDDLE_SUCCESS}))
-  .catch((e)=> dispatch({type : types.DELETE_RIDDLE_FALIURE}))
+  })
+    .then((r) => dispatch({ type: types.DELETE_RIDDLE_SUCCESS }))
+    .catch((e) => dispatch({ type: types.DELETE_RIDDLE_FALIURE }));
+};
+
+export const getData = () => async (dispatch) => {
+  dispatch({ type: types.GET_DATA_REQUEST });
+  return axios({
+    method: "get",
+    url: "/riddle/admin",
+    baseURL: "http://localhost:8080",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("riddleapptoken")}`,
+    },
+  })
+    .then((r) => {
+      // console.log("r",r)
+      return dispatch({ type: types.GET_DATA_SUCCESS, payload: r.data });
+    })
+    .catch((e) => dispatch({ type: types.GET_DATA_FALIURE }));
 };
