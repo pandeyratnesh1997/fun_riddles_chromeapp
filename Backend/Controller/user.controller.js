@@ -8,7 +8,7 @@ userRoute.post("/signup", async (req, res) => {
     const { email, password, name, role } = req.body;
      let exist = await userModel.findOne({email});
 
-     console.log(email,exist)
+    //  console.log(email,exist)
      if(exist){
       return res.status(409).send("Email alrady exist")
      }
@@ -36,7 +36,7 @@ userRoute.post("/signup", async (req, res) => {
       return res.send("invalid credential");
     }
     const hashPassword = user.password;
-    console.log(hashPassword)
+    // console.log(hashPassword)
     await bcrypt.compare(password, hashPassword, (err, result) => {
       if (err) {
         return res.send("Invalid crendential");

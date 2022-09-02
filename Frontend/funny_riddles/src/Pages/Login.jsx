@@ -41,7 +41,7 @@ const Login = () => {
       password,
     };
     dispatch(login(payload)).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.status  == 200){
         toast({
           position: "top",
@@ -53,7 +53,7 @@ const Login = () => {
           isClosable: true,
           zIndex: 10000,
         });
-        localStorage.setItem("TimeCampToken", res.data.token);
+        localStorage.setItem("riddleapp", res.data.token);
         setTimeout(() => {
           navigate("/", { replace: true });
         }, 5000);
