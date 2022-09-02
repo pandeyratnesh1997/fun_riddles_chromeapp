@@ -1,4 +1,4 @@
-import { Box, Flex, HStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import React, { useEffect, useState, useRef } from "react";
 import styles from "./Styles/Riddles.module.css";
@@ -8,86 +8,57 @@ import { fetchRiddle } from "../Redux/Player/action";
 const Riddles = () => {
   const [page, setpage] = useState(0);
   const riddle = useSelector((state) => state.playerReducer);
-  console.log(riddle);
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const ref4 = useRef(null);
   const [result, setResult] = useState("");
-//   const [ans,setans] = useState("");
-  
-
   const dispatch = useDispatch();
-/*
-  const CheckResult = (userAns)=>{
-    console.log(userAns)
-    if(userAns.trim()===riddle.playerRiddle[0].answer.trim()){
-        setResult("Right")
-    }
-    else{
-        setResult("Wrong")
-    }
-    console.log(result);
-    setTimeout(()=>{
-        setpage(page+1)
-    },3000)
-   
-  }
-const changePage = ()=>{
-    
-}
-*/
-  
-  useEffect(() => {
-    dispatch(fetchRiddle(page));
-  }, [page]);
-
+  const [ans,setans] = useState("");
  
-  const CheckResult = (id) => {
+  let {options} = riddle.playerRiddle[0] 
+  // if(riddle.playerRiddle[0]===0){
+  //    return <Box>{"level finished"}</Box>
+  // }
+  
+ 
+  
+
+
+  const CheckResult = (value) => {
     // checking logic
-// const value =ReactDOM.findDOMNode(this)
+
     // write and wrong
     let userValue;
-//    console.log(value);
-    switch (id) {
-      case 1: {
-        userValue = ref1.current.innerText;
-        console.log("1",ref1.current.innerText.trim());
-        console.log("2",riddle.playerRiddle[0].answer.trim())
-        if (userValue.trim() === riddle.playerRiddle[0].answer.trim()) {
+  //  console.log(value);
+    switch (value) {
+      case options[0]: {
+        if (value.trim() === riddle.playerRiddle[0].answer.trim()) {
           setResult("Right");
         } else {
           setResult("Wrong");
         }
         break;
       }
-      case 2: {
-        userValue = ref1.current.innerText;
-        console.log("1",ref1.current.innerText.trim());
+      case options[1]: {
         console.log("2",riddle.playerRiddle[0].answer.trim())
-        if (userValue.trim() === riddle.playerRiddle[0].answer.trim()) {
+        if (value.trim() === riddle.playerRiddle[0].answer.trim()) {
           setResult("Right");
         } else {
           setResult("Wrong");
         }
         break;
       }
-      case 3: {
-        userValue = ref1.current.innerText;
-        console.log("1",ref1.current.innerText.trim());
+      case options[2]: {
+       
         console.log("2",riddle.playerRiddle[0].answer.trim())
-        if (userValue.trim() === riddle.playerRiddle[0].answer.trim()) {
+        if (value.trim()  === riddle.playerRiddle[0].answer.trim()) {
           setResult("Right");
         } else {
           setResult("Wrong");
         }
         break;
       }
-      case 4: {
-        userValue = ref1.current.innerText;
-        console.log("1",ref1.current.innerText.trim());
+      case options[3]: {
+       
         console.log("2",riddle.playerRiddle[0].answer.trim())
-        if (userValue.trim() === riddle.playerRiddle[0].answer.trim()) {
+        if (value.trim()  === riddle.playerRiddle[0].answer.trim()) {
           setResult("Right");
         } else {
           setResult("Wrong");
@@ -105,13 +76,28 @@ console.log(result);
     },3000)
     
   };
- 
-  if (riddle.isLoading) {
-    return <Spinner />
-  } 
-  else if (riddle.isError) {
-    return <Box>Something went wrong!</Box>;
-  }
+
+
+
+  useEffect(() => {
+  //  if()
+
+    dispatch(fetchRiddle(page));
+
+  }, [page]);
+
+  // if (riddle.isLoading) {
+  //   return <Spinner />
+  // } 
+  // else if (riddle.isError) {
+  //   return <Box>Something went wrong!</Box>;
+  // }
+  // if(riddle.playerRiddle[0]!==undefined){
+  //   return ( <Box m={"200px"}>
+  //       <Heading>You have finished all levels</Heading>
+  //   </Box> )
+  // }
+
   return (
     <div>
       {riddle.playerRiddle.map((el) => {
@@ -123,16 +109,16 @@ console.log(result);
             </Box>
             <Box className={styles.bottomDiv}>
               <HStack>
-                <Flex
-                  onClick={()=>CheckResult(1)}
-                ref={ref1}
+                <Box
+                  onClick={()=>CheckResult(el.options[0])}
+
                   className={styles.firstOption}
                 >
                   {el.options[0]}
-                </Flex>
+                </Box>
                 <Box
-                  onClick={()=>CheckResult(2)}
-                  ref={ref2}
+                  onClick={() => CheckResult(el.options[1])}
+                  
                   className={styles.secondOption}
                 >
                   {el.options[1]}
@@ -140,15 +126,15 @@ console.log(result);
               </HStack>
               <HStack>
                 <Box
-                  onClick={()=>CheckResult(3)}
-                  ref={ref3}
+                  onClick={() => CheckResult(el.options[2])}
+                 
                   className={styles.thirdOption}
                 >
                   {el.options[2]}
                 </Box>
                 <Box
-                  onClick={()=>CheckResult(4)}
-                  ref={ref4}
+                  onClick={() => CheckResult(el.options[3])}
+                  
                   className={styles.fourthOption}
                 >
                   {el.options[3]}
