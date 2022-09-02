@@ -36,6 +36,29 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    const OTP = Math.floor(1000+Math.random()*1000)
+    console.log('OTP:', OTP)
+//     <HStack>
+//   <PinInput>
+//     <PinInputField />
+//     <PinInputField />
+//     <PinInputField />
+//     <PinInputField />
+//   </PinInput>
+// </HStack>
+    if(!email || !password){
+        toast({
+          position: "top",
+          title: "Email or Password Required!",
+          description:
+            "Please fill all the required fields.Thank you!",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+          zIndex: 10000,
+        });
+        return;
+    }
     const payload = {
       email,
       password,
@@ -53,7 +76,7 @@ const Login = () => {
           isClosable: true,
           zIndex: 10000,
         });
-        localStorage.setItem("TimeCampToken", res.data.token);
+        localStorage.setItem("riddleToken", res.data.token);
         setTimeout(() => {
           navigate("/", { replace: true });
         }, 5000);
