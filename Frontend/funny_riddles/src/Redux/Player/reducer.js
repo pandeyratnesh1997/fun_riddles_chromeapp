@@ -11,7 +11,7 @@ const init_state = {
 
 export const reducer = (state = init_state, action)=>{
     const { type, payload} = action;
-
+// helo
     switch(type){
         case types.GET_RIDDLE_REQUEST :{
             return {
