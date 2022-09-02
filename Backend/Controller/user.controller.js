@@ -52,6 +52,7 @@ userRoute.post("/signup", async (req, res) => {
         const infoToSave = {
           email: user.email,
           name: user.name,
+          role:user.role,
         }
         return res.send({massage:"loginSuccessfull",token:token,id:user._id,user:infoToSave})
       }else{
