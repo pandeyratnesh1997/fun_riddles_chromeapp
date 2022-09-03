@@ -1,7 +1,7 @@
 .cont{
     width: 480px;
     height : 720px;
-    border : 1px solid red;
+    /* border : 1px solid red; */
     margin : auto;
     margin-top: 7rem;
 
@@ -29,6 +29,7 @@
     justify-content: center;
     background-color: rgb(0,0,0);
     color: white;
+    box-sizing: none;
     padding : "15px";
     font-size: larger;
     font-family: Apple Chancery, cursive;
