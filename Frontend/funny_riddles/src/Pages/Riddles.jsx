@@ -17,6 +17,7 @@ const Riddles = () => {
   
   
   const [result, setResult] = useState("");
+  const [score, setScore] = useState(0)
   const toast = useToast()
   const dispatch = useDispatch();
   const [ans, setans] = useState(false);
@@ -36,40 +37,40 @@ const Riddles = () => {
       setans(true);
       return
     }
-    
+  
     switch (value) {
       case options[0]: {
         if (value.trim() === riddle.playerRiddle[0].answer.trim()) {
-          setResult(()=>"Right");
+          setResult("Right");
         } else {
-          setResult(()=>"Wrong");
+          setResult("Wrong");
         }
         break;
       }
       case options[1]: {
         console.log("2", riddle.playerRiddle[0].answer.trim());
         if (value.trim() === riddle.playerRiddle[0].answer.trim()) {
-          setResult(()=>"Right");
+          setResult("Right")
         } else {
-          setResult(()=>"Wrong");
+          setResult("Wrong");
         }
         break;
       }
       case options[2]: {
         console.log("2", riddle.playerRiddle[0].answer.trim());
         if (value.trim() === riddle.playerRiddle[0].answer.trim()) {
-          setResult(()=>"Right");
+          setResult("Right");
         } else {
-          setResult(()=>"Wrong");
+          setResult("Wrong");
         }
         break;
       }
       case options[3]: {
         console.log("2", riddle.playerRiddle[0].answer.trim());
         if (value.trim() === riddle.playerRiddle[0].answer.trim()) {
-          setResult(()=>"Right");
+          setResult("Right");
         } else {
-          setResult(()=>"Wrong");
+          setResult("Wrong");
         }
         break;
       }
@@ -78,6 +79,17 @@ const Riddles = () => {
       }
     }
     console.log(result);
+   
+    
+    // setTimeout()
+    setTimeout(() => {
+      setpage((page)=>page + 1);
+    }, 1000);
+  };
+  useEffect(()=>{
+    if(!result){
+      return
+    }
     if(result==="Right"){
       toast({
         title: `${result}`,
@@ -96,17 +108,13 @@ const Riddles = () => {
         isClosable: true,
       })
     }
-    
-    // setTimeout()
-    setTimeout(() => {
-      setpage((page)=>page + 1);
-    }, 1000);
-  };
+  },[result])
 
   useEffect(() => {
-    
+    const score = result==="Right" ? 1 : -1
 
-    dispatch(fetchRiddle(page));
+    dispatch(fetchRiddle(page,score));
+    setResult("")
   }, [page]);
 
   useEffect(()=>{
@@ -127,12 +135,14 @@ const Riddles = () => {
 
   return (
     <div>
-      {riddle.playerRiddle.map((el) => {
+      {riddle.playerRiddle.map((el,index) => {
         return (
-          <Box key={el._id} className={styles.cont}>
+          <Box key={index} className={styles.cont}>
             <Box className={styles.topDiv}>
-              <Box className={styles.score}></Box>
-              <Box className={styles.riddleDiv}>{el.riddle}</Box>
+              <Box className={styles.score}> Your Score : {riddle.score}</Box>
+              <Box className={styles.riddleDiv}>{el.riddle}
+              
+              </Box>
             </Box>
             <Box className={styles.bottomDiv}>
               <HStack>
