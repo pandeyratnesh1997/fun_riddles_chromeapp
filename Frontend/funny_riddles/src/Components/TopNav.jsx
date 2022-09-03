@@ -64,7 +64,7 @@ const TopNav = () => {
               size={["sm", "md", "md"]}
             />
             <MenuList>
-              <MenuItem>Riddles</MenuItem>
+              <MenuItem  onClick={handleNavigate}>Riddles</MenuItem>
               <MenuItem>Quizzes</MenuItem>
               <MenuItem>Contests</MenuItem>
               <MenuItem>About Us</MenuItem>
@@ -125,7 +125,7 @@ const TopNav = () => {
             <RouterLink to="/user/login">
               <Button
                 colorScheme={"whatsapp"}
-                width={["80px", "90px", "140px"]}
+                width={["80px", "80px", "140px"]}
               >
                 Sign in
               </Button>
@@ -133,7 +133,7 @@ const TopNav = () => {
             <RouterLink to="/user/signup">
               <Button
                 colorScheme={"whatsapp"}
-                width={["80px", "90px", "140px"]}
+                width={["80px", "80px", "140px"]}
               >
                 Sign up
               </Button>

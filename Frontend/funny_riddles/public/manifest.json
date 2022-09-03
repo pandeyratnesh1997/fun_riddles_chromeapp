@@ -2,15 +2,19 @@
 	"manifest_version": 3,
 	"name": "Funny Riddles",
 	"author": "Team code surgeons",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Login to play riddle",
 
 	"action" :{
     "default_title" : "Funny Riddles",
-    "default_popup" : "index.js",
+    "default_popup": "index.html",
     "default_icon" : {
       "16" : "riddle.png",
       "128" : "riddle.png"
     }
+  },
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
   }
+  
 }
