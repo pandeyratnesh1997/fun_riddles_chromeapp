@@ -47,7 +47,7 @@ export const deleteRiddle = (payload) => (dispatch) => {
     .catch((e) => dispatch({ type: types.DELETE_RIDDLE_FALIURE }));
 };
 
-export const getData = () => async (dispatch) => {
+export const getData = () =>  (dispatch) => {
   dispatch({ type: types.GET_DATA_REQUEST });
   return axios({
     method: "get",
@@ -58,7 +58,7 @@ export const getData = () => async (dispatch) => {
     },
   })
     .then((r) => {
-      // console.log("r",r)
+      console.log("r",r)
       return dispatch({ type: types.GET_DATA_SUCCESS, payload: r.data });
     })
     .catch((e) => dispatch({ type: types.GET_DATA_FALIURE }));
