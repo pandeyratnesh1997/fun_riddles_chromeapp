@@ -12,7 +12,7 @@ import axios from "axios";
 export const register = (payload) => (dispatch) => {
   dispatch({ type: SIGNUP_REQUEST });
   return axios
-    .post("http://localhost:8080/user/signup", payload)
+    .post("https://glacial-dawn-55521.herokuapp.com/user/signup", payload)
     .then((res) => {
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
       return res;
@@ -26,7 +26,7 @@ export const register = (payload) => (dispatch) => {
 export const login = (payload) => (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
-    .post("http://localhost:8080/user/login", payload)
+    .post("https://glacial-dawn-55521.herokuapp.com/user/login", payload)
     .then((res) => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       return res;
