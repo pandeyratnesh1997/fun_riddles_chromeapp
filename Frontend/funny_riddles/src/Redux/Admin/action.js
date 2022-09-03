@@ -5,7 +5,7 @@ export const addRiddles = (payload) => async (dispatch) => {
   dispatch({ type: types.ADD_RIDDLE_REQUEST });
   console.log("payload", payload);
   //   try {
-  //     let res = await axios.post("http://localhost:8080/riddle/create", {payload}, {
+  //     let res = await axios.post("https://glacial-dawn-55521.herokuapp.com/riddle/create", {payload}, {
   //       headers: {
   //         "content-type": "application-json",
   //         authorization: `${localStorage.getItem("riddleapp")}`,
@@ -21,7 +21,7 @@ export const addRiddles = (payload) => async (dispatch) => {
   return axios({
     method: "post",
     url: "/riddle/create",
-    baseURL: "http://localhost:8080",
+    baseURL: "https://glacial-dawn-55521.herokuapp.com",
     headers: {
       authorization: `Bearer ${localStorage.getItem("riddleapptoken")}`,
     },
@@ -38,7 +38,7 @@ export const deleteRiddle = (payload) => (dispatch) => {
   return axios({
     method: "delete",
     url: `/riddle/delete/${id}`,
-    baseURL: "http://localhost:8080",
+    baseURL: "https://glacial-dawn-55521.herokuapp.com",
     headers: {
       authorization: `Bearer ${localStorage.getItem("riddleapptoken")}`,
     },
@@ -52,7 +52,7 @@ export const getData = () => async (dispatch) => {
   return axios({
     method: "get",
     url: "/riddle/admin",
-    baseURL: "http://localhost:8080",
+    baseURL: "https://glacial-dawn-55521.herokuapp.com",
     headers: {
       authorization: `Bearer ${localStorage.getItem("riddleapptoken")}`,
     },
